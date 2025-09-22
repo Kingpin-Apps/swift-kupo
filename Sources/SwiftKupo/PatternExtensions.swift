@@ -1,33 +1,187 @@
 import Foundation
 
+/// Semantic extensions for OpenAPI-generated Pattern types.
+///
+/// The Swift OpenAPI Generator creates Pattern types with generic property names (`value1`, `value2`, etc.)
+/// for union types. These extensions provide meaningful property names and convenience methods,
+/// making the Pattern API much more intuitive and self-documenting.
+///
+/// ## Overview
+///
+/// Instead of using generic generated properties:
+///
+/// ```swift
+/// // Generated code (harder to understand)
+/// let pattern = Components.Parameters.Pattern()
+/// pattern.value1 = ._ast_           // What does value1 mean?
+/// pattern.value2 = someAddress      // What does value2 represent?
+/// ```
+///
+/// Use semantic extensions:
+///
+/// ```swift
+/// // With semantic extensions (much clearer!)
+/// let pattern = Components.Parameters.Pattern()
+/// pattern.wildcard = ._ast_                         // Matches everything
+/// pattern.addressPattern = someAddress              // Address matching
+/// pattern.assetIdPattern = "policy.asset"           // Asset matching
+/// pattern.outputReferencePattern = "tx#output"      // Output reference matching
+/// ```
+///
+/// ## Topics
+///
+/// ### Pattern Types
+/// - ``Components/Schemas/Pattern``
+/// - ``Components/Parameters/Pattern``
+///
+/// ### Address Pattern Types  
+/// - ``Components/Schemas/AddressPattern``
+///
+/// ### Address Format Support
+/// - ``Components/Schemas/AddressPattern/Value2Payload``
+/// - ``Components/Schemas/AddressPattern/Value3Payload``
+/// - ``Components/Schemas/AddressPattern/Value4Payload``
+
 // MARK: - Pattern Extensions for better property names
 
+/// Extensions providing semantic property names for `Components.Schemas.Pattern`.
+///
+/// This extension enhances the generated OpenAPI Pattern type with meaningful property names,
+/// replacing generic `value1`, `value2`, etc. with descriptive names that indicate what each
+/// pattern type matches.
+///
+/// ## Usage Examples
+///
+/// ```swift
+/// // Match all UTxOs (use with caution!)
+/// let wildcardPattern = Components.Schemas.Pattern(wildcard: ._ast_)
+///
+/// // Match UTxOs at a specific address
+/// let addressPattern = Components.Schemas.Pattern(
+///     addressPattern: Components.Schemas.AddressPattern(
+///         shelleyAddressPattern: .bech32("addr_test1qp4kux2v7xcg9...")
+///     )
+/// )
+///
+/// // Match UTxOs containing specific assets
+/// let assetPattern = Components.Schemas.Pattern(
+///     assetIdPattern: "policy_id.asset_name"
+/// )
+///
+/// // Match a specific transaction output
+/// let outputPattern = Components.Schemas.Pattern(
+///     outputReferencePattern: "d61cd910f55919612e031f557bbb16421682afa1f85e3f2c0069b25776900c2e#1"
+/// )
+/// ```
 extension Components.Schemas.Pattern {
-    /// A wildcard pattern that matches everything (`*`)
+    /// A wildcard pattern that matches everything (`*`).
+    ///
+    /// Use this pattern to match all UTxOs indexed by Kupo. Be cautious with wildcard patterns
+    /// as they can return large amounts of data.
+    ///
+    /// ## Example
+    ///
+    /// ```swift
+    /// let pattern = Components.Schemas.Pattern()
+    /// pattern.wildcard = ._ast_  // Matches everything
+    /// ```
+    ///
+    /// - Warning: Wildcard patterns can return very large result sets. Use appropriate query filters
+    ///   like `unspent: true` and `resolveHashes: false` to limit data transfer.
     public var wildcard: Components.Schemas.Wildcard? {
         get { value1 }
         set { value1 = newValue }
     }
     
-    /// An address pattern for matching specific addresses or address patterns
+    /// An address pattern for matching UTxOs at specific addresses or address patterns.
+    ///
+    /// Address patterns can match:
+    /// - Specific Cardano addresses (Shelley, Byron, or stake addresses)
+    /// - Address credential patterns using wildcards
+    /// - Combinations of payment and stake credentials
+    ///
+    /// ## Example
+    ///
+    /// ```swift
+    /// let pattern = Components.Schemas.Pattern()
+    /// pattern.addressPattern = Components.Schemas.AddressPattern(
+    ///     shelleyAddressPattern: .bech32("addr_test1qp4kux2v7xcg9...")
+    /// )
+    /// ```
     public var addressPattern: Components.Schemas.AddressPattern? {
         get { value2 }
         set { value2 = newValue }
     }
     
-    /// An asset ID pattern for matching specific policy IDs and asset names  
+    /// An asset ID pattern for matching UTxOs containing specific policy IDs and asset names.
+    ///
+    /// Asset patterns support:
+    /// - Specific assets: `"policy_id.asset_name"`
+    /// - All assets from a policy: `"policy_id.*"`
+    /// - Pattern matching with wildcards
+    ///
+    /// ## Examples
+    ///
+    /// ```swift
+    /// // Match specific asset
+    /// pattern.assetIdPattern = "1220099e5e430475c219518179efc7e6c8289db028904834025d5b086.MyToken"
+    ///
+    /// // Match all assets from a policy
+    /// pattern.assetIdPattern = "1220099e5e430475c219518179efc7e6c8289db028904834025d5b086.*"
+    /// ```
     public var assetIdPattern: Components.Schemas.AssetIdPattern? {
         get { value3 }
         set { value3 = newValue }
     }
     
-    /// An output reference pattern for matching specific transaction outputs
+    /// An output reference pattern for matching specific transaction outputs.
+    ///
+    /// Output reference patterns target specific UTxOs by their transaction ID and output index.
+    /// The format is `"transaction_id#output_index"`.
+    ///
+    /// ## Example
+    ///
+    /// ```swift
+    /// pattern.outputReferencePattern = "d61cd910f55919612e031f557bbb16421682afa1f85e3f2c0069b25776900c2e#1"
+    /// ```
+    ///
+    /// This is useful for:
+    /// - Checking if a specific UTxO exists
+    /// - Monitoring when a UTxO gets spent
+    /// - Retrieving datum/script data for known UTxOs
     public var outputReferencePattern: Components.Schemas.OutputReferencePattern? {
         get { value4 }
         set { value4 = newValue }
     }
     
-    /// Convenience initializer using semantic property names
+    /// Creates a new Pattern using semantic property names.
+    ///
+    /// This convenience initializer allows you to create patterns using descriptive parameter names
+    /// instead of the generic `value1`, `value2`, etc. Only one pattern type should be specified.
+    ///
+    /// - Parameters:
+    ///   - wildcard: A wildcard pattern to match everything
+    ///   - addressPattern: An address pattern to match specific addresses
+    ///   - assetIdPattern: An asset pattern to match specific assets
+    ///   - outputReferencePattern: An output reference pattern to match specific UTxOs
+    ///
+    /// ## Examples
+    ///
+    /// ```swift
+    /// // Address pattern
+    /// let addressPattern = Components.Schemas.Pattern(
+    ///     addressPattern: Components.Schemas.AddressPattern(
+    ///         shelleyAddressPattern: .bech32(address)
+    ///     )
+    /// )
+    ///
+    /// // Asset pattern
+    /// let assetPattern = Components.Schemas.Pattern(
+    ///     assetIdPattern: "policy.asset"
+    /// )
+    /// ```
+    ///
+    /// - Note: Patterns are mutually exclusive. Only specify one pattern type per instance.
     public init(
         wildcard: Components.Schemas.Wildcard? = nil,
         addressPattern: Components.Schemas.AddressPattern? = nil,
