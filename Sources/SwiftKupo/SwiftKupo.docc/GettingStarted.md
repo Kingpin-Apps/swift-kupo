@@ -40,7 +40,7 @@ targets: [
 ### Xcode Integration
 
 1. In Xcode, select **File** → **Add Package Dependencies...**
-2. Enter the repository URL: `https://github.com/your-username/swift-kupo`
+2. Enter the repository URL: `https://github.com/Kingpin-Apps/swift-kupo`
 3. Choose your version requirements and click **Add Package**
 4. Select your target and click **Add Package**
 

@@ -29,14 +29,14 @@ Add SwiftKupo to your `Package.swift` dependencies:
 
 ```swift path=null start=null
 dependencies: [
-    .package(url: "https://github.com/your-username/swift-kupo", from: "1.0.0")
+    .package(url: "https://github.com/Kingpin-Apps/swift-kupo", from: "1.0.0")
 ]
 ```
 
 ### Xcode
 
 1. In Xcode, go to **File** ▸ **Add Packages...**
-2. Enter the repository URL: `https://github.com/your-username/swift-kupo`
+2. Enter the repository URL: `https://github.com/Kingpin-Apps/swift-kupo`
 3. Click **Add Package**
 
 ### Requirements
@@ -47,6 +47,63 @@ dependencies: [
 
 ## Quick Start
 
+### Prerequisites
+
+First, you'll need a running Kupo server. The easiest way is a cloud-based environment on (demeter.run)[https://demeter.run] Or install cardano-node and Kupo server as described [here](https://cardanosolutions.github.io/kupo/#section/Installation). (Docker installation is recommended.) You can start one using the Docker or by building from source. Here's an example using Docker Compose:
+
+```bash
+services:
+  cardano-node:
+    container_name: cardano-node
+    image: ghcr.io/intersectmbo/cardano-node:${CARDANO_NODE_VERSION:-latest}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f 127.0.0.1:12788 || exit 1"]
+      interval: 60s
+      timeout: 10s
+      retries: 5
+    environment:
+      - NETWORK=${NETWORK:-preview}
+    ports:
+      - "3001:3001"
+    volumes:
+      - node-db:/data/db
+      - node-ipc:/ipc
+      - node-config:/opt/cardano/config
+
+  kupo:
+    image: cardanosolutions/kupo:${KUPO_VERSION:-latest}
+    container_name: kupo
+    command:
+      [
+        "--host",
+        "0.0.0.0",
+        "--node-socket",
+        "/ipc/node.socket",
+        "--node-config",
+        "/config/${NETWORK:-preview}/cardano-node/config.json",
+        "--workdir",
+        "/db",
+        "--match",
+        "*",
+        "--since",
+        "origin",
+      ]
+    ports:
+      - "1442:1442"
+    volumes:
+      - node-config:/config:ro
+      - node-ipc:/ipc
+      - kupo-db:/db
+
+volumes:
+  node-db:
+  node-ipc:
+  node-config:
+  kupo-db:
+
+```
+                                                                                
 ```swift path=null start=null
 import SwiftKupo
 import OpenAPIURLSession
@@ -261,10 +318,10 @@ default:
 
 ### Related Cardano Swift Packages
 
-- **[swift-cardano-core](https://github.com/your-org/swift-cardano-core)**: Core Cardano types and utilities
-- **[swift-cardano-chain](https://github.com/your-org/swift-cardano-chain)**: Blockchain data structures
-- **[swift-blockfrost-api](https://github.com/your-org/swift-blockfrost-api)**: Blockfrost API client
-- **[swift-ogmios](https://github.com/your-org/swift-ogmios)**: Ogmios WebSocket client
+- **[swift-cardano-core](https://github.com/Kingpin-Apps/swift-cardano-core)**: Core Cardano types and utilities
+- **[swift-cardano-chain](https://github.com/Kingpin-Apps/swift-cardano-chain)**: Blockchain data structures
+- **[swift-blockfrost-api](https://github.com/Kingpin-Apps/swift-blockfrost-api)**: Blockfrost API client
+- **[swift-ogmios](https://github.com/Kingpin-Apps/swift-ogmios)**: Ogmios WebSocket client
 
 ### Cardano Documentation
 

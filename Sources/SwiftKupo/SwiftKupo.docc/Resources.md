@@ -70,16 +70,16 @@ This page provides links to official documentation, community resources, tools, 
 
 ### Swift Cardano Libraries
 
-- **[swift-cardano-core](https://github.com/your-org/swift-cardano-core)**  
+- **[swift-cardano-core](https://github.com/Kingpin-Apps/swift-cardano-core)**  
   Core Cardano types and utilities in Swift
   
-- **[swift-cardano-chain](https://github.com/your-org/swift-cardano-chain)**  
+- **[swift-cardano-chain](https://github.com/Kingpin-Apps/swift-cardano-chain)**  
   Cardano blockchain data structures for Swift
   
-- **[swift-blockfrost-api](https://github.com/your-org/swift-blockfrost-api)**  
+- **[swift-blockfrost-api](https://github.com/Kingpin-Apps/swift-blockfrost-api)**  
   Swift client for Blockfrost API
   
-- **[swift-ogmios](https://github.com/your-org/swift-ogmios)**  
+- **[swift-ogmios](https://github.com/Kingpin-Apps/swift-ogmios)**  
   Swift WebSocket client for Ogmios
 
 ## Community Resources
@@ -149,22 +149,6 @@ This page provides links to official documentation, community resources, tools, 
 
 ## Example Projects and Tutorials
 
-### SwiftKupo Examples
-
-- **[SwiftKupo Examples Repository](https://github.com/your-username/swift-kupo-examples)**  
-  Collection of example projects using SwiftKupo
-  
-- **[iOS Wallet Demo](https://github.com/your-username/ios-cardano-wallet-demo)**  
-  Sample iOS wallet using SwiftKupo for UTxO management
-
-### Kupo Integration Examples
-
-- **[Kupo Docker Compose](https://github.com/CardanoSolutions/kupo/tree/master/docker-compose)**  
-  Docker Compose setups for Kupo development
-  
-- **[Kupo with Ogmios](https://github.com/CardanoSolutions/kupo/blob/master/docs/ADR-001_Consuming_chain_data.md)**  
-  Architecture document for Kupo + Ogmios integration
-
 ### Educational Content
 
 - **[Cardano Developer Courses](https://developers.cardano.org/docs/get-started/)**  
@@ -183,9 +167,6 @@ This page provides links to official documentation, community resources, tools, 
 - **[Kupo OpenAPI Spec](https://github.com/CardanoSolutions/kupo/blob/master/docs/api.yaml)**  
   Complete OpenAPI specification for Kupo
   
-- **[Blockfrost OpenAPI Spec](https://github.com/blockfrost/openapi)**  
-  OpenAPI specification for Blockfrost
-  
 - **[OpenAPI Specification](https://swagger.io/specification/)**  
   Official OpenAPI specification documentation
 
@@ -194,17 +175,9 @@ This page provides links to official documentation, community resources, tools, 
 #### Mainnet Services
 
 - **Kupo Public Instances**: Currently limited; mostly self-hosted
-- **[Blockfrost Mainnet](https://cardano-mainnet.blockfrost.io/)**  
-  Hosted API service for mainnet
-- **[Koios Mainnet](https://api.koios.rest/)**  
-  Public API for mainnet queries
+- **[Demeter by TxPipe](https://demeter.run)**  
+  Hosted API service 
 
-#### Testnet Services  
-
-- **[Blockfrost Testnet](https://cardano-testnet.blockfrost.io/)**  
-  Hosted API service for testnet
-- **[Koios Testnet](https://testnet.koios.rest/)**  
-  Public API for testnet queries
 
 ### Network Information
 
@@ -221,13 +194,13 @@ This page provides links to official documentation, community resources, tools, 
 
 ### Contributing to SwiftKupo
 
-- **[Contributing Guidelines](https://github.com/your-username/swift-kupo/blob/main/CONTRIBUTING.md)**  
+- **[Contributing Guidelines](https://github.com/Kingpin-Apps/swift-kupo/blob/main/CONTRIBUTING.md)**  
   How to contribute to SwiftKupo development
   
-- **[Code of Conduct](https://github.com/your-username/swift-kupo/blob/main/CODE_OF_CONDUCT.md)**  
+- **[Code of Conduct](https://github.com/Kingpin-Apps/swift-kupo/blob/main/CODE_OF_CONDUCT.md)**  
   Community guidelines and expectations
   
-- **[Issue Templates](https://github.com/your-username/swift-kupo/issues/new/choose)**  
+- **[Issue Templates](https://github.com/Kingpin-Apps/swift-kupo/issues/new/choose)**  
   Templates for bug reports and feature requests
 
 ### Contributing to Kupo
@@ -241,7 +214,7 @@ This page provides links to official documentation, community resources, tools, 
 ### Getting Support
 
 1. **SwiftKupo Issues**  
-   [GitHub Issues](https://github.com/your-username/swift-kupo/issues) for SwiftKupo-specific problems
+   [GitHub Issues](https://github.com/Kingpin-Apps/swift-kupo/issues) for SwiftKupo-specific problems
 
 2. **Kupo Support**  
    [GitHub Issues](https://github.com/CardanoSolutions/kupo/issues) for Kupo server issues
@@ -256,7 +229,7 @@ This page provides links to official documentation, community resources, tools, 
 
 ### Release Channels
 
-- **[SwiftKupo Releases](https://github.com/your-username/swift-kupo/releases)**  
+- **[SwiftKupo Releases](https://github.com/Kingpin-Apps/swift-kupo/releases)**  
   SwiftKupo version releases and changelogs
   
 - **[Kupo Releases](https://github.com/CardanoSolutions/kupo/releases)**  
@@ -289,34 +262,16 @@ This page provides links to official documentation, community resources, tools, 
 - **[Grafana](https://grafana.com/)**  
   Visualization platform for metrics and monitoring
 
-### Performance Resources
-
-- **[Kupo Performance Tuning](https://github.com/CardanoSolutions/kupo#performance)**  
-  Guidelines for optimizing Kupo performance
-  
-- **[Swift Performance Tips](https://github.com/apple/swift/blob/main/docs/OptimizationTips.rst)**  
-  Official Swift performance optimization guide
-
 ## Legal and Licensing
 
 ### License Information
 
-- **[SwiftKupo License](https://github.com/your-username/swift-kupo/blob/main/LICENSE)**  
+- **[SwiftKupo License](https://github.com/Kingpin-Apps/swift-kupo/blob/main/LICENSE)**  
   Licensing terms for SwiftKupo
-  
-- **[Kupo License (MPL-2.0)](https://github.com/CardanoSolutions/kupo/blob/master/LICENSE)**  
-  Mozilla Public License for Kupo
   
 - **[Swift License (Apache 2.0)](https://github.com/apple/swift/blob/main/LICENSE.txt)**  
   Apache License for Swift
 
-### Compliance Resources
-
-- **[Open Source Compliance](https://opensource.org/licenses)**  
-  Information about open source licenses
-  
-- **[Cardano Open Source](https://github.com/input-output-hk)**  
-  Input Output Global's open source projects
 
 ---
 
@@ -339,4 +294,3 @@ This page provides links to official documentation, community resources, tools, 
 
 ---
 
-*This resource list is maintained by the SwiftKupo community. Please [contribute](https://github.com/your-username/swift-kupo/blob/main/CONTRIBUTING.md) additions and updates.*
