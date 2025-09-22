@@ -22,7 +22,7 @@ Add SwiftKupo to your `Package.swift` dependencies:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/your-username/swift-kupo", from: "1.0.0")
+    .package(url: "https://github.com/Kingpin-Apps/swift-kupo", from: "1.0.0")
 ]
 ```
 
