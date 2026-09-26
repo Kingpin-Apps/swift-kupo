@@ -1201,6 +1201,23 @@ components:
           $ref: "#/components/schemas/SlotNo"
         header_hash:
           $ref: "#/components/schemas/HeaderHash"
+        transaction_id:
+          type: string
+          description: The transaction that spent the output, if known.
+          contentEncoding: base16
+          minLength: 64
+          maxLength: 64
+          nullable: true
+        input_index:
+          type: integer
+          description: The index of the spending input within its transaction, if known.
+          minimum: 0
+          nullable: true
+        redeemer:
+          type: string
+          description: The redeemer of the spending input, as CBOR, if any.
+          contentEncoding: base16
+          nullable: true
 
     TransactionId:
       type: string
