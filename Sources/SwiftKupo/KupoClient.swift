@@ -47,7 +47,7 @@ import HTTPTypes
 ///
 /// ### Error Handling
 /// - ``KupoError``
-public struct Kupo {
+public struct Kupo: Sendable {
     /// The underlying OpenAPI-generated client for making HTTP requests to the Kupo server.
     ///
     /// Use this client to access all Kupo API endpoints with full type safety.
@@ -67,7 +67,8 @@ public struct Kupo {
     ///
     /// - Parameters:
     ///   - basePath: The base URL of the Kupo server. Defaults to `http://localhost:1442` if not specified.
-    ///   - client: A pre-configured OpenAPI client. If not provided, a new client will be created with default settings.
+    ///   - client: A pre-configured OpenAPI client. If not provided, a new client will be created with default settings,
+    ///     including ``QueryFlagMiddleware`` so Kupo's query flags are sent the way Kupo reads them.
     ///
     /// - Throws: ``KupoError/invalidBasePath(_:)`` if the provided `basePath` cannot be converted to a valid URL.
     ///
@@ -110,7 +111,8 @@ public struct Kupo {
         
         self.client = client ?? Client(
             serverURL: serverURL,
-            transport: URLSessionTransport()
+            transport: URLSessionTransport(),
+            middlewares: [QueryFlagMiddleware()]
         )
     }
 }
