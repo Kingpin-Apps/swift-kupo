@@ -3,6 +3,15 @@ generate:
   - client
 accessModifier: public
 namingStrategy: idiomatic
+additionalImports:
+  - Foundation
 additionalFileComments:
   - "swift-format-ignore-file"
   - "swiftlint:disable all"
+# Exact ledger numbers. The named schemas are added to the vendored spec by
+# scripts/exact-numbers.py (run `just exact-numbers` after refreshing it).
+typeOverrides:
+  schemas:
+    LedgerQuantity: Swift.UInt64
+    MetadatumInteger: Foundation.Decimal
+    SlotNo: Swift.UInt64

@@ -20,3 +20,7 @@ changelog:
 # Bump version according to changelog
 bump: changelog
 	cz bump
+
+# Re-apply the exact-ledger-number patch after refreshing the vendored openapi.yaml
+exact-numbers:
+    python3 scripts/exact-numbers.py

@@ -244,6 +244,10 @@ The OpenAPI Generator runs automatically during build via Swift Package Manager 
 
 Generated files are placed in `.build/plugins/outputs/swift-kupo/SwiftKupo/destination/OpenAPIGenerator/GeneratedSources/`
 
+### Exact ledger numbers
+
+After refreshing `openapi.yaml` from upstream Kupo, run `just exact-numbers` (`scripts/exact-numbers.py`, idempotent). It points lovelace/asset quantities, metadata integers and slot numbers at named schemas that `openapi-generator-config.yaml` overrides to `UInt64` / `Decimal`, so they decode without loss.
+
 ### Adding New Endpoints
 
 1. Edit `Sources/SwiftKupo/openapi.yaml` to add the new endpoint specification

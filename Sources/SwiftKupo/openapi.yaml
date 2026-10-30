@@ -888,6 +888,22 @@ components:
       minimum: 0
       example: 1
 
+    LedgerQuantity:
+      type: integer
+      description: |
+        An output quantity of Lovelace or of some asset (0 ... 2^64-1).
+        Overridden to Swift.UInt64 by openapi-generator-config.yaml.
+      minimum: 0
+      example: 42
+
+    MetadatumInteger:
+      type: integer
+      description: |
+        A metadata integer of arbitrary size (CBOR bounds it to -2^64 ... 2^64-1).
+        Overridden to Foundation.Decimal by openapi-generator-config.yaml so
+        every value in that range decodes exactly.
+      example: 42
+
     Metadata:
       type: object
       additionalProperties: false
@@ -969,15 +985,7 @@ components:
         - int
       properties:
         int:
-          type: integer
-          description: |
-            An integer or arbitrary size.
-
-            Example:
-
-            ```json
-            { "int": 42 }
-            ```
+          $ref: "#/components/schemas/MetadatumInteger"
 
     Metadatum_String:
       title: string
@@ -1241,9 +1249,7 @@ components:
         - coins
       properties:
         coins:
-          type: integer
-          description: A quantity of Lovelace.
-          example: 42
+          $ref: "#/components/schemas/LedgerQuantity"
         assets:
           type: object
           description: A _key:value_ map of asset identifier → quantity.
@@ -1251,9 +1257,7 @@ components:
             type: string
             pattern: ^[a-f0-9]{56}(.[a-f0-9]{2,64})?$
           additionalProperties:
-            x-additionalPropertiesName: "{policy-id}.{asset-name}"
-            type: integer
-            description: A quantity of some asset.
+            $ref: "#/components/schemas/LedgerQuantity"
           example:
             1220099e5e430475c219518179efc7e6c8289db028904834025d5b086: 231
             289db028904834025d5b085d5b08661220099e5e430475c2195181796.08661220099e: 1
