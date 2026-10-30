@@ -1,3 +1,9 @@
+## 0.2.0 (2026-10-30)
+
+### Feat
+
+- decode ledger numbers exactly
+
 ## 0.1.2 (2026-09-26)
 
 ### Fix
